@@ -177,7 +177,7 @@ component output=false {
 	}
 
 	private struct function _getRequestStorage( string key="includes" ) output=false {
-		var key = _getRequestKey();
+		local.key = _getRequestKey();
 		if ( !request.keyExists( key ) ) {
 			request[ key ] = {
 				  includes = {}

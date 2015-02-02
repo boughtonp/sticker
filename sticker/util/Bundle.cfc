@@ -49,7 +49,7 @@ component output=false {
 			asset.path = _resolvePath( arguments.path );
 			asset.url = _getRootUrl() & asset.path;
 		} else if ( StructKeyExists( arguments, "url" ) ) {
-			asset.url = arguments.url
+			asset.url = arguments.url;
 		}
 
 		asset.type         = arguments.type ?: ListLast( asset.url, "." );
@@ -79,16 +79,16 @@ component output=false {
 		, required any      match
 		, required function idGenerator
 	) output=false {
-		var rootDir   = ExpandPath( _getRootDirectory() );
-		var directory = rootDir;
+		var rootDir   = _getRootDirectory();
+		local.directory = rootDir;
 		var matches   = "";
 
 		if ( Left( arguments.directory, 1 ) != "/" ) {
-			directory &= "/";
+			local.directory &= "/";
 		}
-		directory &= arguments.directory;
+		local.directory &= arguments.directory;
 
-		if ( DirectoryExists( directory ) ) {
+		if ( DirectoryExists( local.directory ) ) {
 			var filter = IsSimpleValue( arguments.match ) ? arguments.match : "*";
 			matches = DirectoryList( directory, true, "path", filter );
 			for( var path in matches ){
