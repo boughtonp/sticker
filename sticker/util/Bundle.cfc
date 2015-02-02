@@ -91,6 +91,7 @@ component output=false {
 		if ( DirectoryExists( local.directory ) ) {
 			var filter = IsSimpleValue( arguments.match ) ? arguments.match : "*";
 			matches = DirectoryList( local.directory, true, "path", filter );
+
 			for( var path in matches ){
 				var relativePath = Replace( Replace( path, rootDir, "" ), "\", "/", "all" );
 
@@ -157,6 +158,8 @@ component output=false {
 
 // GETTERS AND SETTERS
 	private string function _getRootDirectory() output=false {
+		if ( NOT DirectoryExists(_rootDirectory) )
+			return expandPath(_rootDirectory);
 		return _rootDirectory;
 	}
 	private void function _setRootDirectory( required string rootDirectory ) output=false {
