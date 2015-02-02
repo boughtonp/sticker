@@ -35,7 +35,7 @@ component output=false {
 							orderChanged = true;
 							newOrder.deleteAt( pos1 );
 							newOrder.insertAt( pos2, key1 );
-						} elseif ( !key1ShouldBeBeforeKey2 && pos2 > pos1 ) {
+						} else if ( !key1ShouldBeBeforeKey2 && pos2 > pos1 ) {
 							orderChanged = true;
 							newOrder.deleteAt( pos2 );
 							newOrder.insertAt( pos1, key2 );
