@@ -90,7 +90,7 @@ component output=false {
 
 		if ( DirectoryExists( local.directory ) ) {
 			var filter = IsSimpleValue( arguments.match ) ? arguments.match : "*";
-			matches = DirectoryList( directory, true, "path", filter );
+			matches = DirectoryList( local.directory, true, "path", filter );
 			for( var path in matches ){
 				var relativePath = Replace( Replace( path, rootDir, "" ), "\", "/", "all" );
 
