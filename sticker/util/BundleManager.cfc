@@ -179,7 +179,7 @@ component output=false {
 	private array function _getBundles() output=false {
 		return _bundles;
 	}
-	private void function _setBundles( required array Bundles ) outputbfalse {
+	private void function _setBundles( required array Bundles ) output=false {
 		_Bundles = arguments.bundles;
 	}
 }
