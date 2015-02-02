@@ -47,7 +47,7 @@ component extends="testbox.system.BaseSpec"{
 				testData[ "thisIsAnObject" ] = { "thisIsAKey"="and a value", "aontherKey"=[1,4,{},false]};
 				testData[ "interesting"    ] = NullValue();
 
-				var expectedResult = '<script>cfrequest={"thisIsAnArray":[1,2,3,4,"five"],"thisIsAnObject":{"thisIsAKey":"and a value","aontherKey":[1,4,{},false]},"interesting":null}</script>'
+				var expectedResult = '<script>cfrequest={"thisIsAnArray":[1,2,3,4,"five"],"thisIsAnObject":{"thisIsAKey":"and a value","aontherKey":[1,4,{},false]},"interesting":null}</script>';
 
 				expect( renderer.renderData( data=testData ) ).toBe( expectedResult );
 			} );
@@ -59,7 +59,7 @@ component extends="testbox.system.BaseSpec"{
 				testData[ "thisIsAnObject" ] = { "thisIsAKey"="and a value", "aontherKey"=[1,4,{},false]};
 				testData[ "interesting"    ] = NullValue();
 
-				var expectedResult = '<script>customVariableName={"thisIsAnArray":[1,2,3,4,"five"],"thisIsAnObject":{"thisIsAKey":"and a value","aontherKey":[1,4,{},false]},"interesting":null}</script>'
+				var expectedResult = '<script>customVariableName={"thisIsAnArray":[1,2,3,4,"five"],"thisIsAnObject":{"thisIsAKey":"and a value","aontherKey":[1,4,{},false]},"interesting":null}</script>';
 				expect( renderer.renderData( data=testData, variableName="customVariableName" ) ).toBe( expectedResult );
 
 			} );

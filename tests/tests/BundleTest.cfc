@@ -34,6 +34,7 @@ component extends="testbox.system.BaseSpec"{
 		} );
 
 		describe( "addAsset()", function(){
+
 			it( "should resolve any paths containing wildcards", function(){
 				var bundle = new sticker.util.Bundle( rootDirectory="/resources/bundles/bundle1", rootUrl="/assets/" );
 
@@ -68,7 +69,7 @@ component extends="testbox.system.BaseSpec"{
 				expect( _assetsToStruct( bundle.getAssets() ) ).toBe( {
 					jquery = { type="js", path="", url="http://www.jquery.com/jquery.js", before=[], after=[], ie="!IE", media="print", renderedInclude="", dependsOn=[], dependents=[] }
 				} );
-			})
+			});
 
 		} );
 
@@ -82,7 +83,7 @@ component extends="testbox.system.BaseSpec"{
 					, match       = "*.min.css"
 					, idGenerator = function( path ){
 						var fileName = ListLast( path, "/" );
-						return LCase( ReReplaceNoCase( fileName, "^(.*?)\.min\.css", "\1" ) )
+						return LCase( ReReplaceNoCase( fileName, "^(.*?)\.min\.css", "\1" ) );
 					  }
 				);
 
@@ -101,7 +102,7 @@ component extends="testbox.system.BaseSpec"{
 					, match       = function( path ){ return ReFindNoCase( ".*?\.min\.css$", arguments.path ); }
 					, idGenerator = function( path ){
 						var fileName = ListLast( path, "/" );
-						return LCase( ReReplaceNoCase( fileName, "^(.*?)\.min\.css", "\1" ) )
+						return LCase( ReReplaceNoCase( fileName, "^(.*?)\.min\.css", "\1" ) );
 					  }
 				);
 
