@@ -94,6 +94,8 @@ component output=false {
 
 			for( var path in matches ){
 				var relativePath = Replace( Replace( path, rootDir, "" ), "\", "/", "all" );
+				if ( NOT relativePath.startsWith('/') )
+					relativePath = '/' & relativePath;
 
 				if ( !IsClosure( arguments.match ) || arguments.match( relativePath ) ) {
 					addAsset(
@@ -102,6 +104,7 @@ component output=false {
 					);
 				}
 			}
+
 		}
 
 		return this;
