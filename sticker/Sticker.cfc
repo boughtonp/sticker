@@ -140,7 +140,7 @@ component output=false {
 		var assets        = _getAssets();
 		var rendered      = "";
 
-		includes = ( includes[ arguments.group ] ?: {} );
+		includes = includes.keyExists(arguments.group) ? includes[arguments.group] : {};
 
 		_addIncludeDependencies( includes );
 
