@@ -189,8 +189,9 @@ component output=false {
 	}
 
 	private void function _addIncludeDependencies( required struct includes ) output=false {
-		for( var assetId in arguments.includes ){
-			for( var dependencyAssetId in _getDependencies( assetId=assetId, ignore=arguments.includes.keyArray() ) ){
+		var IncludeKeys = arguments.includes.keyArray();
+		for( var assetId in IncludeKeys ){
+			for( var dependencyAssetId in _getDependencies( assetId=assetId, ignore=IncludeKeys ) ){
 				arguments.includes[ dependencyAssetId ] = "";
 			}
 		}
