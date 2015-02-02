@@ -122,6 +122,9 @@ component output=false {
 		directory = GetDirectoryFromPath( fullPath );
 		file      = ListLast( fullPath, "\/" );
 
+		if ( !DirectoryExists( directory ) )
+			directory = expandPath(directory);
+
 		if ( !DirectoryExists( directory ) ) {
 			throw( type="Sticker.missingAsset", message="The asset [#arguments.path#] could not be found in the bundle who's root directory is at [#_getRootDirectory()#]" );
 		}
