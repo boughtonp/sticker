@@ -24,6 +24,13 @@ component output=false {
 	 * @rootUrl.hint       URL that maps to the directory
 	 */
 	public BundleManager function addBundle( required string rootDirectory, required string rootUrl, string rootComponentPath, struct config={} ) output=false {
+
+		if ( NOT StructKeyExists(Arguments,'rootComponentPath') AND Arguments.rootDirectory.startsWith('/') )
+		{
+			Arguments.rootComponentPath = Arguments.rootDirectory.substring(1).replaceAll('/','.').replaceFirst('\.$','');
+			Arguments.rootDirectory = expandPath(Arguments.rootDirectory);
+		}
+
 		var bundles       = _getBundles();
 		var bundle        = new Bundle( rootDirectory=arguments.rootDirectory, rootUrl=arguments.rootUrl );
 		var configCfcPath = arguments.rootComponentPath ?: _convertDirectoryToComponentPath( arguments.rootDirectory );
