@@ -80,6 +80,8 @@ component output=false {
 		, required function idGenerator
 	) output=false {
 		var rootDir   = _getRootDirectory();
+		if ( NOT Server.ColdFusion.ProductName EQ 'ColdFusion Server' )
+			rootDir = expandPath( rootDir );
 		local.directory = rootDir;
 		var matches   = "";
 
@@ -94,7 +96,7 @@ component output=false {
 
 			for( var path in matches ){
 				var relativePath = Replace( Replace( path, rootDir, "" ), "\", "/", "all" );
-				if ( NOT relativePath.startsWith('/') )
+				if ( NOT relativePath.startsWith('/') AND NOT refind('^[A-Za-z]:',relativePath) )
 					relativePath = '/' & relativePath;
 
 				if ( !IsClosure( arguments.match ) || arguments.match( relativePath ) ) {
@@ -126,7 +128,7 @@ component output=false {
 		directory = GetDirectoryFromPath( fullPath );
 		file      = ListLast( fullPath, "\/" );
 
-		if ( !DirectoryExists( directory ) )
+		if ( Server.ColdFusion.ProductName EQ 'ColdFusion Server' AND !DirectoryExists( directory ) )
 			directory = expandPath(directory);
 
 		if ( !DirectoryExists( directory ) ) {
@@ -161,9 +163,14 @@ component output=false {
 
 // GETTERS AND SETTERS
 	private string function _getRootDirectory() output=false {
-		if ( NOT DirectoryExists(_rootDirectory) )
+		if ( Server.Coldfusion.ProductName EQ 'ColdFusion Server' AND NOT DirectoryExists(_rootDirectory) )
+		{
 			return expandPath(_rootDirectory);
-		return _rootDirectory;
+		}
+		else
+		{
+			return _rootDirectory;
+		}
 	}
 	private void function _setRootDirectory( required string rootDirectory ) output=false {
 		_rootDirectory = ReReplace( arguments.rootDirectory, "(.*?)/$", "\1" );
