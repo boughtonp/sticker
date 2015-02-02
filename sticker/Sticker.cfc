@@ -210,10 +210,10 @@ component output=false {
 	}
 
 // GETTERS and SETTERS
-	private BundleManager function _getBundleManager() output=false {
+	private function _getBundleManager() output=false {
 		return _bundleManager;
 	}
-	private void function _setBundleManager( required BundleManager bundleManager ) output=false {
+	private void function _setBundleManager( required bundleManager ) output=false {
 		_bundleManager = arguments.bundleManager;
 	}
 
