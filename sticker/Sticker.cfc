@@ -95,7 +95,7 @@ component output=false {
 			var requestedIncludes = _getRequestStorage();
 
 			if ( !requestedIncludes.keyExists( arguments.group ) ){
-				requestedIncludes[ arguments.group ] = createObject('java','java.util.LinkedHashMap').init();
+				requestedIncludes[ arguments.group ] = _newLinkedStruct();
 			}
 
 			requestedIncludes[ arguments.group ][ arguments.assetId ] = "";
@@ -120,7 +120,7 @@ component output=false {
 
 		var requestStorage = _getRequestStorage( "data" );
 		if ( !requestStorage.keyExists( arguments.group ) ){
-			requestStorage[ arguments.group ] = createObject('java','java.util.LinkedHashMap').init();
+			requestStorage[ arguments.group ] = _newLinkedStruct();
 		}
 
 		requestStorage[ arguments.group ].append( arguments.data );
@@ -181,7 +181,7 @@ component output=false {
 		if ( !request.keyExists( key ) ) {
 			request[ key ] = {
 				  includes = {}
-				, data     = createObject('java','java.util.LinkedHashMap').init()
+				, data     = _newLinkedStruct()
 			};
 		}
 
@@ -208,6 +208,14 @@ component output=false {
 		}
 
 		return arguments.dependencies;
+	}
+
+	private Struct function _newLinkedStruct()
+	{
+		if ( Server.Coldfusion.ProductName EQ 'ColdFusion Server' )
+			return createObject('java','java.util.LinkedHashMap').init();
+		else
+			return evaluate("StructNew('linked')");
 	}
 
 // GETTERS and SETTERS
