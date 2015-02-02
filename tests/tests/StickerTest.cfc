@@ -164,9 +164,9 @@ component extends="testbox.system.BaseSpec"{
 			       .load();
 
 			sticker.include( "js-someplugin" )
-			       .includeData( { key1="key1" } )
-			       .includeData( { key2="key2" } )
-			       .includeData( { key3="key3" } );
+			       .includeData( { 'key1'="key1" } )
+			       .includeData( { 'key2'="key2" } )
+			       .includeData( { 'key3'="key3" } );
 
 			expect( sticker.renderIncludes( "js" ) ).toBe(
 				'<script>cfrequest={"key1":"key1","key2":"key2","key3":"key3"}</script>' & Chr(13) & Chr(10) &
