@@ -41,7 +41,7 @@ component extends="testbox.system.BaseSpec"{
 		describe( "renderJsData()", function(){
 
 			it( "should return a script block with passed data rendered as a JavaScript object", function(){
-				var testData = StructNew( "linked" );
+				var testData = createObject('java','java.util.LinkedHashMap').init();
 
 				testData[ "thisIsAnArray"  ] = [ 1,2,3,4,"five"];
 				testData[ "thisIsAnObject" ] = { "thisIsAKey"="and a value", "aontherKey"=[1,4,{},false]};
@@ -53,7 +53,7 @@ component extends="testbox.system.BaseSpec"{
 			} );
 
 			it( "should use custom variable name when passed, rather than the default 'cfrequest'", function(){
-				var testData = StructNew( "linked" );
+				var testData = createObject('java','java.util.LinkedHashMap').init();
 
 				testData[ "thisIsAnArray"  ] = [ 1,2,3,4,"five"];
 				testData[ "thisIsAnObject" ] = { "thisIsAKey"="and a value", "aontherKey"=[1,4,{},false]};

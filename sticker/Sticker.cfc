@@ -95,7 +95,7 @@ component output=false {
 			var requestedIncludes = _getRequestStorage();
 
 			if ( !requestedIncludes.keyExists( arguments.group ) ){
-				requestedIncludes[ arguments.group ] = StructNew( "linked" );
+				requestedIncludes[ arguments.group ] = createObject('java','java.util.LinkedHashMap').init();
 			}
 
 			requestedIncludes[ arguments.group ][ arguments.assetId ] = "";
@@ -120,7 +120,7 @@ component output=false {
 
 		var requestStorage = _getRequestStorage( "data" );
 		if ( !requestStorage.keyExists( arguments.group ) ){
-			requestStorage[ arguments.group ] = StructNew( "linked" );
+			requestStorage[ arguments.group ] = createObject('java','java.util.LinkedHashMap').init();
 		}
 
 		requestStorage[ arguments.group ].append( arguments.data );
@@ -181,7 +181,7 @@ component output=false {
 		if ( !request.keyExists( key ) ) {
 			request[ key ] = {
 				  includes = {}
-				, data     = StructNew( "linked" )
+				, data     = createObject('java','java.util.LinkedHashMap').init()
 			};
 		}
 
